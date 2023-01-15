@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>newUser</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+          integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="modal-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-6 container text-center">
+                <h1 class="text-center">New User</h1>
+
+                <form th:action="@{admin/newUserAdmin}" th:object="${newUser}" method="post">
+                    <div class="form-group">
+                        <div class="text-center">Name</div>
+                        <input type="text" name="firstName" th:field="*{name}" class="form-control"
+                               placeholder="Enter Name"/>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="text-center">Age</div>
+                        <input type="text" name="age" th:field="*{age}" class="form-control"
+                               placeholder="Enter Age"/>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="text-center">Department</div>
+                        <input type="text" th:field="*{department}" name="department" class="form-control"
+                               placeholder="Enter Department"/>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-6 container text-center">Email</div>
+                        <input type="text" th:field="*{email}" name="email" class="form-control"
+                               placeholder="Enter Email"/>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="text-center">Password</div>
+                        <input type="text" th:field="*{password}" name="password" class="form-control"
+                               placeholder="Enter Password"/>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-auto container text-center">Roles</div>
+                        <div class="col sm-auto text-center">
+                            <input type="checkbox" name="roleList"
+                                   th:each="role : ${roleList}"
+                                   th:text="${role.getNoPrefix()}"
+                                   th:value="${role.getName()}"
+                                   th:field="*{roles}"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 container text-center">
+                        <button type="submit" class="btn btn-primary">CreateUser</button>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
